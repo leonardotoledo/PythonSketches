@@ -1,33 +1,39 @@
-from tkinter import *
-from myRepo import sort
+import tkinter as tk
+from random import shuffle
 
-def sortear():
-   membros = [membro1.get(), membro2.get(), membro3.get(), membro4.get(), membro5.get(), membro6.get()]
-   sort(membros)
+class Sorteio(tk.Frame):
 
-master = Tk()
-Label(master, text="Membro 1: ").grid(row=0)
-Label(master, text="Membro 2: ").grid(row=1)
-Label(master, text="Membro 3: ").grid(row=2)
-Label(master, text="Membro 4: ").grid(row=3)
-Label(master, text="Membro 5: ").grid(row=4)
-Label(master, text="Membro 6: ").grid(row=5)
+    def __init__(self, master=None):
+        tk.Frame.__init__(self, master)
+        self.grid()
 
-membro1 = Entry(master)
-membro2 = Entry(master)
-membro3 = Entry(master)
-membro4 = Entry(master)
-membro5 = Entry(master)
-membro6 = Entry(master)
+        self.membros = list()
 
-membro1.grid(row=0, column=1)
-membro2.grid(row=1, column=1)
-membro3.grid(row=2, column=1)
-membro4.grid(row=3, column=1)
-membro5.grid(row=4, column=1)
-membro6.grid(row=5, column=1)
+        for i in range(6):
+            self.memberLabel = tk.Label(self, text="Membro " + str(i + 1) + ": ")
+            self.memberLabel.grid(row=i)
+            self.membros.append(tk.Entry(self))
+            self.membros[i].grid(row=i, column=1)
 
-Button(master, text='Sair', command=master.quit).grid(row=6, column=0, sticky=W, pady=4)
-Button(master, text='Fazer sorteio', command=sortear).grid(row=6, column=1, sticky=W, pady=4)
+        self.quitButton = tk.Button(self, text='Sair', command=self.quit)
+        self.quitButton.grid(row=6, column=0, sticky=tk.W, pady=4)
 
-mainloop()
+        self.sortButton = tk.Button(self, text='Fazer sorteio', command=self.sort(self.membros))
+        self.sortButton.grid(row=6, column=1, sticky=tk.W, pady=4)
+
+    def sort(self, membros):
+        self.members = [element.get() for element in membros]
+        self.results = tk.Text(self, height=26, width=30)
+        self.results.grid()
+
+        self.results.insert(tk.END, "Tempo total da rodada: %d min\n" % (len(self.members) * 10))
+        shuffle(self.members)
+
+        for i in range(1, len(self.members)):
+            self.results.insert(tk.END, "\nDupla %d:\n Piloto: %s\n Co-piloto: %s\n" % (i, self.members[i - 1], self.members[i]))
+            if (i == len(self.members) - 1):
+                self.results.insert(tk.END, "\nDupla %d:\n Piloto: %s\n Co-piloto: %s\n" % (len(self.members), self.members[len(self.members) - 1], self.members[0]))
+
+app = Sorteio()
+app.master.title("Roleta Russa do CD Py")
+app.mainloop()
