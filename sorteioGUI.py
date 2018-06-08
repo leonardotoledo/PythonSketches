@@ -1,32 +1,33 @@
-import pyforms
-from   pyforms          import BaseWidget
-from   pyforms.controls import ControlText
-from   pyforms.controls import ControlButton
-
+from tkinter import *
 from myRepo import sort
 
-class Sorteio(BaseWidget):
+def sortear():
+   membros = [e1.get(), e2.get(), e3.get(), e4.get(), e5.get(), e6.get()]
+   sort(membros)
 
-    def __init__(self):
-        super(Sorteio,self).__init__('Sorteio')
+master = Tk()
+Label(master, text="Membro 1: ").grid(row=0)
+Label(master, text="Membro 2: ").grid(row=1)
+Label(master, text="Membro 3: ").grid(row=2)
+Label(master, text="Membro 4: ").grid(row=3)
+Label(master, text="Membro 5: ").grid(row=4)
+Label(master, text="Membro 6: ").grid(row=5)
 
-        #Definition of the forms field
-        self._member1 = ControlText('Membro 1')
-        self._member2 = ControlText('Membro 2')
-        self._member3 = ControlText('Membro 3')
-        self._member4 = ControlText('Membro 4')
-        self._member5 = ControlText('Membro 5')
-        self._member6 = ControlText('Membro 6')
+e1 = Entry(master)
+e2 = Entry(master)
+e3 = Entry(master)
+e4 = Entry(master)
+e5 = Entry(master)
+e6 = Entry(master)
 
-        self._button = ControlButton('Sorteie agora')
+e1.grid(row=0, column=1)
+e2.grid(row=1, column=1)
+e3.grid(row=2, column=1)
+e4.grid(row=3, column=1)
+e5.grid(row=4, column=1)
+e6.grid(row=5, column=1)
 
-        #Define the button action
-        self._button.value = self.__buttonAction
+Button(master, text='Sair', command=master.quit).grid(row=6, column=0, sticky=W, pady=4)
+Button(master, text='Fazer sorteio', command=sortear).grid(row=6, column=1, sticky=W, pady=4)
 
-    def __buttonAction(self):
-        """Button action event"""
-        self._members = [self._member1.value,self._member2.value,self._member3.value,self._member4.value,self._member5.value,self._member6.value]
-        sort(self._members)
-
-#Execute the application
-if __name__ == "__main__":   pyforms.start_app( Sorteio )
+mainloop( )
