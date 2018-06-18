@@ -30,7 +30,7 @@ resultado = Tk()
 # Numero de pessoas a sortear:
 n = 5
 
-# Instancia os rótulos usando a classe Label e os coloca na janela usando o gerenciador de layout 'grid'
+# Instancia os rotulos usando a classe Label e os coloca na janela usando o gerenciador de layout 'grid'
 rotulos=[]
 for i in range(n):
     rotulos.append(Label(janela, text='Membro '+str(i+1)+': ').grid(row=i, column=0))
