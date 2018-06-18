@@ -1,6 +1,13 @@
 from tkinter import *
+from tkinter import filedialog
 from random import shuffle
 from datetime import datetime
+
+def saveAs():
+    fileToSave = filedialog.asksaveasfilename(defaultextension=".txt", filetypes = (("Arquivo de Texto", "*.txt"),("Todos os Arquivos","*.*")), title = "Salvar como...")
+    with open(fileToSave, 'w') as outputFile:
+        outputFile.write('\n'.join(contents))
+
 
 def sort():
 
@@ -11,27 +18,29 @@ def sort():
 
     currentTime = datetime.now()
 
-    aux=[]
-    rotulo = []
+    global contents
+    contents = list()
 
-    aux.append("%s \n\nTempo total da rodada:\n %d min\n" %(currentTime.strftime("%d/%m/%Y %H:%M:%S"), len(members)*10))
-    rotulo.append(Label(resultado, text=aux[0]).grid(row=0, column=0))
+    contents.append("%s \n\nTempo total da rodada:\n %d min\n" %(currentTime.strftime("%d/%m/%Y %H:%M:%S"), len(members)*10))
 
     shuffle(members)
 
     for i in range(1,len(members)):
-        aux.append("\nDupla %d:\n Piloto: %s\n Co-piloto: %s\n" %(i,members[i-1],members[i]))
-        rotulo.append(Label(resultado, text=aux[i]).grid(row=i, column=0))
+        contents.append("\nDupla %d:\n Piloto: %s\n Co-piloto: %s\n" %(i,members[i-1],members[i]))
         if (i==len(members)-1) :
-            aux.append("\nDupla %d:\n Piloto: %s\n Co-piloto: %s\n" %(len(members),members[len(members)-1],members[0]))
-            rotulo.append(Label(resultado, text=aux[len(members)]).grid(row=len(members), column=0))
+            contents.append("\nDupla %d:\n Piloto: %s\n Co-piloto: %s\n" %(len(members),members[len(members)-1],members[0]))
+
+    rotulo = Label(resultado, text='\n'.join(contents))
+    rotulo.grid(row=0, column=0)
+
+    salvarBotao = Button(resultado, text='Salvar resultado', command=saveAs)
+    salvarBotao.grid(row=len(members)+1, column=0, sticky=W, pady=4)
 
 def contar():
     # Instancia a janela:
 
     sorteio = Tk()
     sorteio.title('Sorteio CD Py')
-
 
     n = int(number.get())
 
