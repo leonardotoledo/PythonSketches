@@ -1,11 +1,20 @@
 from tkinter import *
 from random import shuffle
+from datetime import datetime
 
-def sort(members):
+def sort():
+
+    members = [member.get() for member in membro]
+
+    resultado = Tk()
+    resultado.title('Resultado')
+
+    currentTime = datetime.now()
 
     aux=[]
-    aux.append("Tempo total da rodada: %d min\n" %(len(members)*10))
     rotulo = []
+
+    aux.append("%s \n\nTempo total da rodada:\n %d min\n" %(currentTime.strftime("%d/%m/%Y %H:%M:%S"), len(members)*10))
     rotulo.append(Label(resultado, text=aux[0]).grid(row=0, column=0))
 
     shuffle(members)
@@ -17,34 +26,41 @@ def sort(members):
             aux.append("\nDupla %d:\n Piloto: %s\n Co-piloto: %s\n" %(len(members),members[len(members)-1],members[0]))
             rotulo.append(Label(resultado, text=aux[len(members)]).grid(row=len(members), column=0))
 
+def contar():
+    # Instancia a janela:
 
-def sortear():
-   membros = [member.get() for member in membro]
-   sort(membros)
+    sorteio = Tk()
+    sorteio.title('Sorteio CD Py')
 
-# Instancia a janela:
 
-janela = Tk()
-resultado = Tk()
+    n = int(number.get())
 
-# Numero de pessoas a sortear:
-n = 5
+    # Instancia os rotulos usando a classe Label e os coloca na janela usando o gerenciador de layout 'grid'
+    rotulos=[]
+    for i in range(n):
+        rotulos.append(Label(sorteio, text='Membro '+str(i+1)+': ').grid(row=i, column=0))
 
-# Instancia os rotulos usando a classe Label e os coloca na janela usando o gerenciador de layout 'grid'
-rotulos=[]
-for i in range(n):
-    rotulos.append(Label(janela, text='Membro '+str(i+1)+': ').grid(row=i, column=0))
+    # Usa a classe Entry para criar as caixas de texto e em seguida as coloca na janela com o gerenciador de layout 'grid'
 
-# Usa a classe Entry para criar as caixas de texto e em seguida as coloca na janela com o gerenciador de layout 'grid'
+    global membro
+    membro = list()
+    for i in range(n):
+        membro.append(Entry(sorteio))
+        membro[i].grid(row=i, column=1)
 
-membro = []
-for i in range(n):
-    membro.append(Entry(janela))
-    membro[i].grid(row=i, column=1)
+    sairBotao = Button(sorteio, text='Sair', command=sorteio.quit).grid(row=len(rotulos), column=0, sticky=W, pady=4)
+    sortearBotao = Button(sorteio, text='Fazer sorteio', command=sort).grid(row=len(rotulos), column=1, sticky=W, pady=4)
 
-sairBotao = Button(janela, text='Sair', command=janela.quit).grid(row=len(rotulos), column=0, sticky=W, pady=4)
-sortearBotao = Button(janela, text='Fazer sorteio', command=sortear).grid(row=len(rotulos), column=1, sticky=W, pady=4)
+start = Tk()
 
-janela.title('Sorteio CD Py')
-resultado.title('Resultado')
-janela.mainloop()
+rotulo = Label(start, text='Numero de integrantes: ')
+rotulo.grid(row=0, column=0)
+
+number = Entry(start)
+number.grid(row=0, column=1)
+
+sairBotao = Button(start, text='Sair', command=start.quit).grid(row=1, column=0, sticky=W, pady=4)
+contarBotao = Button(start, text='Prosseguir', command = contar).grid(row=1, column=1, sticky=W, pady=4)
+
+start.title('Sorteio CD Py')
+start.mainloop()
