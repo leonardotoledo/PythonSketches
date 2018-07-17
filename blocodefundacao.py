@@ -43,6 +43,14 @@ def calcBloco():
     if t>8:
         H = z/8/B
 
+    # ETAPA DE ARREDONDAMENTO PARA MULTIPLOS DE 5
+
+    modulusB = int(B/5)
+    modulosH = int(H/5)
+
+    B = 5*(modulusB + 1)
+    H = 5*(modulosH + 1)
+
     resultado = Label(window, text="RESULTADOS: ")
     resultado.grid(row=6, column=0)
 
@@ -51,11 +59,6 @@ def calcBloco():
 
     resultado_altura = Label(window, text="Altura: %.2f cm" %(H))
     resultado_altura.grid(row=7, column=1)
-
-
-# resultado = calcBloco(20,50000,5,15,40)
-#
-# print("Largura da Base: %.2f\nAltura do Bloco: %.2f"%(resultado[0],resultado[1]))
 
 window = Tk()
 
