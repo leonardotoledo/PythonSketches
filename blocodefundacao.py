@@ -43,8 +43,14 @@ def calcBloco():
     if t>8:
         H = z/8/B
 
-    resultado = Label(window, text="Base do Bloco: %.2f\nAltura: %.2f"%(B,H))
-    resultado.grid(row=6, column=1)
+    resultado = Label(window, text="RESULTADOS: ")
+    resultado.grid(row=6, column=0)
+
+    resultado_base = Label(window, text="Base: %.2f cm"%(B))
+    resultado_base.grid(row=6, column=1)
+
+    resultado_altura = Label(window, text="Altura: %.2f cm" %(H))
+    resultado_altura.grid(row=7, column=1)
 
 
 # resultado = calcBloco(20,50000,5,15,40)
@@ -86,5 +92,5 @@ number5.grid(row=4, column=1)
 sairBotao = Button(window, text='Sair', command=window.quit).grid(row=5, column=0, sticky=W, pady=4)
 contarBotao = Button(window, text='Calcular Bloco', command = calcBloco).grid(row=5, column=1, sticky=W, pady=4)
 
-window.title('Sorteio CD Py')
+window.title('Bloco de Fundacao')
 window.mainloop()
