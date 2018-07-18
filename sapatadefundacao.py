@@ -71,43 +71,43 @@ def calcSapata():
 
     sx = 0
     i = 0 # Loop index
+    comprimentoX = L-2*c+2*10
 
     while (sx<8 or sx>33):
         nx = int(Asx/Areas[i])+1 # Numero de barras
         sx = (B - 2*c)/(nx-1)
-        detalheX = '%d bitolas de %s c/ %.1f'%(nx,Bitolas[i],sx)
+        detalheX = '%d bitolas de %s c/ %.1f c. %.1f'%(nx,Bitolas[i],sx,comprimentoX)
         i = i+1
 
     # DETALHAMENTO DA ARMADURA EM Y
 
     sy = 0
     i = 0 # Loop index
+    comprimentoY = B - 2 * c + 2 * 10
 
     while (sy<8 or sy>33):
         ny = int(Asy/Areas[i])+1 # Numero de barras
         sy = (L - 2*c)/(ny-1)
-        detalheY = '%d bitolas de %s c/ %.1f'%(ny,Bitolas[i],sy)
+        detalheY = '%d bitolas de %s c/ %.1f c. %.1f'%(ny,Bitolas[i],sy,comprimentoY)
         i = i+1
 
-    return [B,L,h,detalheX,detalheY]
-
     resultado = Label(window, text="RESULTADOS: ")
-    resultado.grid(row=6, column=0)
+    resultado.grid(row=9, column=0)
 
     resultado_base = Label(window, text="Base: %.2f cm"%(B))
-    resultado_base.grid(row=6, column=1)
+    resultado_base.grid(row=9, column=1)
 
     resultado_largura = Label(window, text="Largura: %.2f cm" %(L))
-    resultado_largura.grid(row=7, column=1)
+    resultado_largura.grid(row=10, column=1)
 
     resultado_altura = Label(window, text="Altura: %.2f cm" %(h))
-    resultado_altura.grid(row=8, column=1)
+    resultado_altura.grid(row=11, column=1)
 
     resultado_detalheX = Label(window, text=detalheX)
-    resultado_detalheX.grid(row=9, column=1)
+    resultado_detalheX.grid(row=12, column=1)
 
     resultado_detalheY = Label(window, text=detalheY)
-    resultado_detalheY.grid(row=10, column=1)
+    resultado_detalheY.grid(row=13, column=1)
 
 window = Tk()
 
@@ -159,8 +159,8 @@ number7.grid(row=6, column=1)
 number8 = Entry(window)
 number8.grid(row=7, column=1)
 
-sairBotao = Button(window, text='Sair', command=window.quit).grid(row=5, column=0, sticky=W, pady=4)
-contarBotao = Button(window, text='Calcular Sapata', command = calcSapata).grid(row=5, column=1, sticky=W, pady=4)
+sairBotao = Button(window, text='Sair', command=window.quit).grid(row=8, column=0, sticky=W, pady=4)
+contarBotao = Button(window, text='Calcular Sapata', command = calcSapata).grid(row=8, column=1, sticky=W, pady=4)
 
 window.title('Sapata de Fundacao')
 window.mainloop()
