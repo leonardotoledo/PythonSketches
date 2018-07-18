@@ -6,7 +6,7 @@ def ajuda():
     ajuda = Tk()
     ajuda.title('Ajuda')
 
-    texto = Label(ajuda, text='Créditos:\n\n\nLeonardo Tolêdo Ferreira\n\nSite: leonardotoledo.org\n\nE-mail: contato@leonardotoledo.org\n\n\nReferências:\n\nABNT NBR 6118:2014\n\nABNT NBR 6122:2010\n\nABNT NBR 7480:2007\n\nNotas de aula de Fundações 2\nProfª. Drª Juliane Andréia Figueiredo Marques\n\n\nNão me responsabilizo pelos usos dados\na este programa por terceiros.\n')
+    texto = Label(ajuda, text='Créditos:\n\n\nLeonardo Tolêdo Ferreira\n\nSite: leonardotoledo.org\n\nE-mail: contato@leonardotoledo.org\n\n\nReferências:\n\nABNT NBR 6118:2014\n\nABNT NBR 6122:2010\n\nABNT NBR 7480:2007\n\nNotas de aula de Fundações 2\nProfª. Drª Juliane Andréia Figueiredo Marques\n\n\nNão me responsabilizo pelo uso\ndeste programa por terceiros.\n')
     texto.grid(row=0, column=0)
 
 
