@@ -82,11 +82,13 @@ def calcSapata():
     i = 0  # Loop index
     comprimentoX = L - 2 * c + 2 * 10
 
-    while (sx < 8 or sx > 33):
+    while (sx < 10 or sx > 25):
         nx = int(Asx / Areas[i]) + 1  # Numero de barras
-        sx = (B - 2 * c) / (nx - 1)
+        if nx>1:
+            sx = (B - 2 * c) / (nx - 1)
         detalheX = '%d bitolas de %s c/ %.1f c. %.1f' % (nx, Bitolas[i], sx, comprimentoX)
         i = i + 1
+
 
     # DETALHAMENTO DA ARMADURA EM Y
 
@@ -94,11 +96,13 @@ def calcSapata():
     i = 0  # Loop index
     comprimentoY = B - 2 * c + 2 * 10
 
-    while (sy < 8 or sy > 33):
+    while (sy < 10 or sy > 25):
         ny = int(Asy / Areas[i]) + 1  # Numero de barras
-        sy = (L - 2 * c) / (ny - 1)
+        if ny > 1:
+            sy = (L - 2 * c) / (ny - 1)
         detalheY = '%d bitolas de %s c/ %.1f c. %.1f' % (ny, Bitolas[i], sy, comprimentoY)
         i = i + 1
+
 
     result = Tk()
     result.title('Resultado')
@@ -139,10 +143,10 @@ rotulo4.grid(row=3, column=0)
 rotulo5 = Label(window, text='Taxa do Terreno (kgf/cm²): ')
 rotulo5.grid(row=4, column=0)
 
-rotulo6 = Label(window, text='Lado menor do Pilar (cm): ')
+rotulo6 = Label(window, text='Lado do Pilar // a B (cm): ')
 rotulo6.grid(row=5, column=0)
 
-rotulo7 = Label(window, text='Lado maior do Pilar (cm): ')
+rotulo7 = Label(window, text='Lado do Pilar // a L (cm): ')
 rotulo7.grid(row=6, column=0)
 
 rotulo8 = Label(window, text='Razão L/B: ')
