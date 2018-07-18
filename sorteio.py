@@ -3,6 +3,7 @@ from tkinter import filedialog
 from random import shuffle
 from datetime import datetime
 
+
 def saveAs():
     fileToSave = filedialog.asksaveasfilename(defaultextension=".txt", filetypes = (("Arquivo de Texto", "*.txt"),("Todos os Arquivos","*.*")), title = "Salvar como...")
     with open(fileToSave, 'w') as outputFile:
@@ -36,6 +37,7 @@ def sort():
     salvarBotao = Button(resultado, text='Salvar resultado', command=saveAs)
     salvarBotao.grid(row=len(members)+1, column=0, sticky=W, pady=4)
 
+
 def contar():
     # Instancia a janela:
 
@@ -59,6 +61,7 @@ def contar():
 
     sairBotao = Button(sorteio, text='Sair', command=sorteio.quit).grid(row=len(rotulos), column=0, sticky=W, pady=4)
     sortearBotao = Button(sorteio, text='Fazer sorteio', command=sort).grid(row=len(rotulos), column=1, sticky=W, pady=4)
+
 
 start = Tk()
 
