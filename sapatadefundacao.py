@@ -30,6 +30,9 @@ def calcSapata():
     # r = razão entre L e B (L/B).
 
     B = sqrt(P / TT / r)  # Calculando o valor do lado B da base da sapata.
+    modulusB = int(B / 5)
+    B = 5 * (modulusB + 1)
+
     L = r * B  # Calculando o valor do lado L da base da sapata.
     fck = 10 * fck  # Convertendo de MPa para kgf/cm²
     fyk = 10 * fyk  # Convertendo de MPa para kgf/cm²
@@ -49,12 +52,7 @@ def calcSapata():
 
     # ARREDONDAMENTO DAS DIMENSOES PARA MULTIPLOS DE 5
 
-    modulusB = int(B / 5)
-    modulusL = int(L / 5)
     modulosH = int(h / 5)
-
-    B = 5 * (modulusB + 1)
-    L = 5 * (modulusL + 1)
     h = 5 * (modulosH + 1)
 
     # CALCULO DAS ARMADURAS
