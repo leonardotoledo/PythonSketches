@@ -14,7 +14,7 @@ def calcSapata():
     c = float(number1.get())
     fck = float(number2.get())
     fyk = float(number3.get())
-    P = float(number4.get())
+    P = 1000*float(number4.get()) # Converting to kgf
     TT = float(number5.get())
     b = float(number6.get())
     l = float(number7.get())
@@ -135,7 +135,7 @@ rotulo2.grid(row=1, column=0)
 rotulo3 = Label(window, text='fyk do Aco (MPa): ')
 rotulo3.grid(row=2, column=0)
 
-rotulo4 = Label(window, text='Carga do Pilar (kgf): ')
+rotulo4 = Label(window, text='Carga do Pilar (tf): ')
 rotulo4.grid(row=3, column=0)
 
 rotulo5 = Label(window, text='Taxa do Terreno (kgf/cm²): ')
